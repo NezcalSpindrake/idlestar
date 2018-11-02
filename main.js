@@ -1,5 +1,6 @@
 var helium = 0;
 var heat = 0;
+var darkMatter = 0;
 
 //basic click function
 
@@ -36,7 +37,7 @@ function save(){
 	
 	var save = {
 		helium: helium,
-		heat: heat
+		heat: heat,
 		darkMatter: darkMatter
 	}
 	
