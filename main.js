@@ -40,7 +40,7 @@ function save(){
 		darkMatter: darkMatter
 	}
 	
-	localStorage.setItem("save",JSON.stringify(save));
+	localStorage.setItem("save", JSON.stringify(save));
 	
 };
 
