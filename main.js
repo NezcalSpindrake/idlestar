@@ -56,4 +56,4 @@ function load(){
 	
 	if (typeof savegame.darkMatter !== "undefined") darkMatter = savegame.darkMatter;
 	
-}
+};
