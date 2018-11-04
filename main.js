@@ -57,4 +57,8 @@ function load(){
 	
 	if (typeof savegame.darkMatter !== "undefined") darkMatter = savegame.darkMatter;
 	
+	document.getElementById("heat").innerHTML = heat;
+	document.getElementById("helium").innerHTML = helium;
+	document.getElementById("heatCost").innerHTML = nextCost;
+	
 };
