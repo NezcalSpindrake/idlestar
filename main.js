@@ -59,6 +59,7 @@ function load(){
 	
 	document.getElementById("heat").innerHTML = heat;
 	document.getElementById("helium").innerHTML = helium;
+	var nextCost = Math.floor(10 * Math.pow(1.1,heat));
 	document.getElementById("heatCost").innerHTML = nextCost;
 	
 };
