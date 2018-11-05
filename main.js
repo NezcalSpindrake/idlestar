@@ -1,6 +1,26 @@
-var helium = 0;
-var heat = 0;
-var darkMatter = 0;
+var helium = 0; //main currency
+var reactions = 0; //additional currency per click
+var heat = 0; //creates currency every game loop
+var darkMatter = 0; //currency gained for restarting a star
+
+function updateDisplay(){
+	
+	document.getElementById("heat").innerHTML = heat;
+	document.getElementById("reactions").innerHTML = reactions;
+	document.getElementById("helium").innerHTML = helium;
+	var nextHeat = Math.floor(10 * Math.pow(1.1,heat));
+	document.getElementById("heatCost").innerHTML = nextHeat;
+	var nextReaction = Math.floor(100 * Math.pow(1.5,reactions));
+	document.getElementById("reactionCost").innerHTML = nextReaction;
+}
+
+//each reaction adds 1 to your clicks
+
+function reactionClick(){
+	
+	heliumClick((1 + reactions))
+	
+}
 
 //basic click function
 
@@ -23,11 +43,26 @@ function buyHeat(){
 	document.getElementById("heatCost").innerHTML = nextCost;
 };
 
+//function for buying reactions
+
+function buyReaction(){
+	var reactionCost = Math.floor(100 * Math.pow(1.5,reactions)); //calculates cost of reactions
+	if(helium >= reactionCost){
+		reactions = reactions + 1;
+		helium = helium - reactionCost;
+		document.getElementById("reaction").innerHTML = reactions;
+		document.getElementById("helium").innerHTML = helium;
+	}
+	var nextCost = Math.floor(100 * Math.pow(1.5,reactions));
+	document.getElementById("reactionCost").innerHTML = reactionCost;
+}
+
 //game loop for autoclickers
 
 window.setInterval(function(){
 	
 	heliumClick(heat);
+	updateDisplay();
 	
 }, 1000);
 
@@ -37,6 +72,7 @@ function save(){
 	
 	var save = {
 		helium: helium,
+		reactions: reactions,
 		heat: heat,
 		darkMatter: darkMatter
 	}
@@ -53,13 +89,21 @@ function load(){
 	
 	if (typeof savegame.helium !== "undefined") helium = savegame.helium;
 	
+	if (typeof savegame.reactions !== "undefined") reactions = savegame.reactions;
+	
 	if (typeof savegame.heat !== "undefined") heat = savegame.heat;
 	
 	if (typeof savegame.darkMatter !== "undefined") darkMatter = savegame.darkMatter;
 	
-	document.getElementById("heat").innerHTML = heat;
-	document.getElementById("helium").innerHTML = helium;
-	var nextCost = Math.floor(10 * Math.pow(1.1,heat));
-	document.getElementById("heatCost").innerHTML = nextCost;
+};
+
+function deleteSave(){
+	
+	var saveDelete = prompt('Are you sure?\nType "delete" to confirm',"");
+	
+	if(saveDelete = "delete"){
+		localStorage.setItem("save", null)
+		location.reload()
+	}
 	
 };
