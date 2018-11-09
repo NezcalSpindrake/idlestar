@@ -1,4 +1,12 @@
 body {
 	background-color: black;
-	color: green
+	color: green;
+}
+button {
+	border-width: 5px;
+	border-color: #045632;
+	border-radius: 5px;
+	padding: 10px;
+	align-content: center;
+	background-color: #993415;
 }
